@@ -36,9 +36,4 @@ function playRound(playerSelection, cpuSelection) {
 
 function game() {
 
-} 
-
-// pseudo
-if rock, win condition = scissors
-if paper, win condition = rock
-if scissors, win condition = paper
+}
