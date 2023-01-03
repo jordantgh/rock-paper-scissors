@@ -8,10 +8,7 @@ let playerObj = {
     choice: ''
 }
 
-const players = {
-    pc: cpuObj,
-    human: playerObj
-}
+const players = [cpuObj, playerObj]
 
 function getComputerChoice() {
     let pick = Math.round(Math.random() * 2);
@@ -28,26 +25,35 @@ function getComputerChoice() {
     }
 }
 
-function playRound(playerObj, cpuObj) {
-    if (playerObj.choice === cpuObj.choice) {
+function playRound(playerChoice, cpuChoice) {
+    console.log(players);
+    if (playerChoice === cpuChoice) {
         return "Draw, go again."
     } else {
-        let pair = [playerObj.choice, cpuObj.choice]
+        let pair = [playerChoice, cpuChoice]
         if (pair.includes("rock") && pair.includes("scissors")) {
-            const winner = players.filter(p => p.choice === "rock");
+            const winner = players.filter(p => p.choice === "rock")[0];
             return winner;
         } else if (pair.includes("paper") && pair.includes("rock")) {
-            const winner = players.filter(p => p.choice === "paper");
+            const winner = players.filter(p => p.choice === "paper")[0];
             return winner;
         } else if (pair.includes("scissors") && pair.includes("paper")) {
-            const winner = players.filter(p => p.choice === "scissors");
+            const winner = players.filter(p => p.choice === "scissors")[0];
             return winner;
         }
     }
 }
 
 function game() {
-
+    for(let i = 0; i < 5; i++) {
+        console.log("Let's play rock paper scissors!");
+        getComputerChoice();
+        playerObj.choice = prompt("What's your choice?");
+        console.log(`You picked ${playerObj.choice}`);
+        winner = playRound(playerObj.choice, cpuObj.choice).owner;
+        alert(`The winner is ${winner}`);
+        console.log(`The winner is ${winner}`);
+    }
 }
 
-//if (pair.includes("rock") && pair.includes("scissors"))
+game();
