@@ -12,17 +12,7 @@ const players = [cpuObj, playerObj]
 
 function getComputerChoice() {
     let pick = Math.round(Math.random() * 2);
-    switch(pick) {
-        case 0:
-            cpuObj.choice = "rock";
-            break;
-        case 1:
-            cpuObj.choice = "paper";
-            break;
-        case 2:
-            cpuObj.choice = "scissors";
-            break;
-    }
+    return ["rock", "paper", "scissors"][pick];
 }
 
 function playRound(playerChoice, cpuChoice) {
@@ -47,7 +37,7 @@ function playRound(playerChoice, cpuChoice) {
 function game() {
     for(let i = 0; i < 5; i++) {
         console.log("Let's play rock paper scissors!");
-        getComputerChoice();
+        cpuObj.choice  = getComputerChoice();
         playerObj.choice = prompt("What's your choice?");
         console.log(`You picked ${playerObj.choice}`);
         winner = playRound(playerObj.choice, cpuObj.choice).owner;
