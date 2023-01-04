@@ -18,7 +18,8 @@ function getComputerChoice() {
 function playRound(playerChoice, cpuChoice) {
     console.log(players);
     if (playerChoice === cpuChoice) {
-        return "Draw, go again."
+        const winner = "No one." 
+        return winner; // Not working atm
     } else {
         let pair = [playerChoice, cpuChoice]
         if (pair.includes("rock") && pair.includes("scissors")) {
@@ -36,13 +37,24 @@ function playRound(playerChoice, cpuChoice) {
 
 function game() {
     for(let i = 0; i < 5; i++) {
-        console.log("Let's play rock paper scissors!");
         cpuObj.choice  = getComputerChoice();
         playerObj.choice = prompt("What's your choice?");
-        console.log(`You picked ${playerObj.choice}`);
+        
         winner = playRound(playerObj.choice, cpuObj.choice).owner;
-        alert(`The winner is ${winner}`);
-        console.log(`The winner is ${winner}`);
+        alert(`${winner} wins this round`);
+        
+        var p = 0;
+        var c = 0;
+
+        if (winner = "player") { p++ } else if (winner = "cpu") { c++ }
+    }
+
+    if(p > c) {
+        alert("Player is the overall winner!");
+    } else if (c > p) {
+        alert("CPU is the overall winner!");
+    } else {
+        alert("Draw!");
     }
 }
 
