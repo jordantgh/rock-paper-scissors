@@ -40,31 +40,10 @@ function game() {
     var p = 0;
     var c = 0;
 
-    for(let i = 0; i < 5; i++) {
-        cpuObj.choice  = getComputerChoice();
-        playerObj.choice = prompt("What's your choice?").toLowerCase();
-        winner = playRound(playerObj.choice, cpuObj.choice).owner;
-        alert(`Player chose ${playerObj.choice} while CPU chose ${cpuObj.choice}, so ${winner} wins this round`);
-        
-        switch(winner) {
-            case "player":
-                p++;
-                break;
-            case "CPU":
-                c++;
-                break;
-            case "no one":
-                break;
-        }
-    }
-
-    if(p > c) {
-        alert("Player is the overall winner!");
-    } else if (c > p) {
-        alert("CPU is the overall winner!");
-    } else {
-        alert("Draw!");
-    }
+    cpuObj.choice = getComputerChoice();
+    playerObj.choice = prompt("What's your choice?").toLowerCase();
+    winner = playRound(playerObj.choice, cpuObj.choice).owner;
+    alert(`Player chose ${playerObj.choice} while CPU chose ${cpuObj.choice}, so ${winner} wins this round`);
 }
 
 game();
