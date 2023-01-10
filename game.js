@@ -36,6 +36,22 @@ function playRound(playerChoice, cpuChoice) {
     }
 }
 
+const winContainer = document.querySelector("#win-msg-container");
+const winDisplay = document.createElement("p");
+winDisplay.id = "winner-display";
+
+let buttons = document.querySelectorAll("button");
+
+buttons.forEach(b => {
+    b.addEventListener("click", (event) => {
+        cpuObj.choice = getComputerChoice();
+        playerObj.choice = event.currentTarget.id;
+        winner = playRound(playerObj.choice, cpuObj.choice).owner;
+        winDisplay.textContent = `${winner} wins!`;
+        winContainer.append(winDisplay);
+    })
+})
+
 function game() {
     var p = 0;
     var c = 0;
@@ -45,5 +61,3 @@ function game() {
     winner = playRound(playerObj.choice, cpuObj.choice).owner;
     alert(`Player chose ${playerObj.choice} while CPU chose ${cpuObj.choice}, so ${winner} wins this round`);
 }
-
-game();
