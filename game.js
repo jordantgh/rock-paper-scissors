@@ -1,3 +1,5 @@
+// We use objects to link owner+choice, so we can easily return the owner of the
+// winning choice
 let cpuObj = {
     owner: 'CPU',
     choice: ''
@@ -20,6 +22,7 @@ function getComputerChoice() {
     return ["rock", "paper", "scissors"][pick];
 }
 
+// Compares the player vs CPU choice
 function playRound(playerChoice, cpuChoice) {
     console.log(players);
     if (playerChoice === cpuChoice) {
@@ -42,6 +45,8 @@ winDisplay.id = "winner-display";
 
 let buttons = document.querySelectorAll("button");
 
+// Add listeners for each button
+// On click, compare player vs CPU and output winner
 buttons.forEach(b => {
     b.addEventListener("click", (event) => {
         cpuObj.choice = getComputerChoice();
@@ -51,13 +56,3 @@ buttons.forEach(b => {
         winContainer.append(winDisplay);
     })
 })
-
-function game() {
-    var p = 0;
-    var c = 0;
-
-    cpuObj.choice = getComputerChoice();
-    playerObj.choice = prompt("What's your choice?").toLowerCase();
-    winner = playRound(playerObj.choice, cpuObj.choice).owner;
-    alert(`Player chose ${playerObj.choice} while CPU chose ${cpuObj.choice}, so ${winner} wins this round`);
-}
