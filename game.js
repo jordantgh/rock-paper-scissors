@@ -42,6 +42,15 @@ function playRound(playerChoice, cpuChoice) {
 const winContainer = document.querySelector("#win-msg-container");
 const winDisplay = document.createElement("p");
 winDisplay.id = "winner-display";
+winDisplay.textContent = "";
+winContainer.append(winDisplay);
+
+const winCounter = document.createElement("p");
+winCounter.textContent = "Player - 0  |  0 - CPU";
+winContainer.append(winCounter);
+
+let p = 0;
+let c = 0;
 
 let buttons = document.querySelectorAll("button");
 
@@ -53,6 +62,7 @@ buttons.forEach(b => {
         playerObj.choice = event.currentTarget.id;
         winner = playRound(playerObj.choice, cpuObj.choice).owner;
         winDisplay.textContent = `${winner} wins!`;
-        winContainer.append(winDisplay);
+        if (winner === "player") { p++; } else if (winner === "CPU") { c++; }
+        winCounter.textContent = `Player - ${p}  |  ${c} - CPU`
     })
 })

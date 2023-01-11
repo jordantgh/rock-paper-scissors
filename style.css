@@ -1,0 +1,22 @@
+html, body {
+    height: 100%;
+}
+
+#game-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+#buttons {
+    display: flex;
+    justify-content: center;
+}
+
+#win-msg-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
