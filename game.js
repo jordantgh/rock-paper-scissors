@@ -1,3 +1,5 @@
+// We use objects to link owner+choice, so we can easily return the owner of the
+// winning choice
 let cpuObj = {
     owner: 'CPU',
     choice: ''
@@ -20,6 +22,7 @@ function getComputerChoice() {
     return ["rock", "paper", "scissors"][pick];
 }
 
+// Compares the player vs CPU choice
 function playRound(playerChoice, cpuChoice) {
     console.log(players);
     if (playerChoice === cpuChoice) {
@@ -36,35 +39,30 @@ function playRound(playerChoice, cpuChoice) {
     }
 }
 
-function game() {
-    var p = 0;
-    var c = 0;
+const winContainer = document.querySelector("#win-msg-container");
+const winDisplay = document.createElement("p");
+winDisplay.id = "winner-display";
+winDisplay.textContent = "";
+winContainer.append(winDisplay);
 
-    for(let i = 0; i < 5; i++) {
-        cpuObj.choice  = getComputerChoice();
-        playerObj.choice = prompt("What's your choice?").toLowerCase();
+const winCounter = document.createElement("p");
+winCounter.textContent = "Player - 0  |  0 - CPU";
+winContainer.append(winCounter);
+
+let p = 0;
+let c = 0;
+
+let buttons = document.querySelectorAll("button");
+
+// Add listeners for each button
+// On click, compare player vs CPU and output winner
+buttons.forEach(b => {
+    b.addEventListener("click", (event) => {
+        cpuObj.choice = getComputerChoice();
+        playerObj.choice = event.currentTarget.id;
         winner = playRound(playerObj.choice, cpuObj.choice).owner;
-        alert(`Player chose ${playerObj.choice} while CPU chose ${cpuObj.choice}, so ${winner} wins this round`);
-        
-        switch(winner) {
-            case "player":
-                p++;
-                break;
-            case "CPU":
-                c++;
-                break;
-            case "no one":
-                break;
-        }
-    }
-
-    if(p > c) {
-        alert("Player is the overall winner!");
-    } else if (c > p) {
-        alert("CPU is the overall winner!");
-    } else {
-        alert("Draw!");
-    }
-}
-
-game();
+        winDisplay.textContent = `${winner} wins!`;
+        if (winner === "player") { p++; } else if (winner === "CPU") { c++; }
+        winCounter.textContent = `Player - ${p}  |  ${c} - CPU`
+    })
+})
